@@ -38,8 +38,9 @@ sourceSets {
 test {
     reports.html.enabled = false
     ignoreFailures = true
-    //scanForTestClasses = false
-    //exclude '**/AllTests.*'
+    scanForTestClasses = false
+    include '**/AllTests.class'
+    //exclude '**'
 }
 
 // THESE TASKS ARE CURRENTLY NOT NEEDED
