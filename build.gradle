@@ -38,6 +38,8 @@ sourceSets {
 test {
     reports.html.enabled = false
     ignoreFailures = true
+    // Next two lines needed so only the AllTests.java meta-file containing all other unit tests is executed.
+    // Otherwise all tests will be run twice. If no AllTests file is present, commment them out.
     scanForTestClasses = false
     include '**/AllTests.class'
     //exclude '**'
