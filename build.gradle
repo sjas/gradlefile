@@ -1,17 +1,20 @@
 apply plugin: 'java'
+apply plugin: 'application'
 apply plugin: 'eclipse'
+//apply plugin: 'clover'
 //apply plugin: 'pmd'
 //apply plugin: 'checkstyle'
 //apply plugin: 'findbugs'
-//apply plugin: 'application'
 
 repositories {
     mavenCentral()
+    // jcenter() // repo for CLOVER, named 'bintree'
 } 
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
     testCompile group: 'org.mockito', name: 'mockito-all', version: '1.+'
+    // classpath 'org.gradle.api.plugins:gradle-clover-plugin:0.8.1' // CLOVER
 }
 
 // fix project structure from src/main/java to 'src' and src/main/test to 'tests'
@@ -45,7 +48,20 @@ test {
     //exclude '**'
 }
 
-// THESE TASKS ARE CURRENTLY NOT NEEDED
+
+///////////////////////////////////////
+// TASKS BELOW ARE CURRENTLY NOT NEEDED
+///////////////////////////////////////
+
+//uploadArchives {
+//    repositories {
+//        flatDir {
+//            dirs 'repos'
+//        }
+//    }
+//}
+
+// WORKING CODE FROM COLLEAGUE
 //pmd {
 //    ruleSets = ["basic", "braces", "codesize", "naming"]
 //} 
@@ -55,10 +71,28 @@ test {
         //args project.args.split('\\s+')
     //}
 //}
-//uploadArchives {
-//    repositories {
-//        flatDir {
-//            dirs 'repos'
+
+// THIS BELOW IS JUST C&P, CODE NEVER RAN
+//clover {
+//    classesBackupDir = file("${sourceSets.main.classesDir}-backup")
+//    licenseLocation = 'clover-license.txt'
+//    excludes = ['**/SynchronizedMultiValueMap.java']
+//    targetPercentage = '85%'
+//
+//    contexts {
+//        statement {
+//            name = 'log'
+//            regexp = '^.*LOG\\..*'
 //        }
+//
+//        method {
+//            name = 'main'
+//            regexp = 'public static void main\\(String args\\[\\]\\).*'
+//        } //    }
+//
+//    report {
+//        html = true
+//        pdf = true
+//        filter = 'log,if,else'
 //    }
 //}
